@@ -14,4 +14,18 @@ DATABASE_URL="mysql://root@127.0.0.1:3306/cpanelouz?serverVersion=10.4.28-MariaD
 Creo la bbdd con:
 php bin/console doctrine:database:create
 
+Creo HelloController con el comando:
 
+php bin/console make:controller HelloController
+
+A continuación sigo los pasos del siguiente link hasta la sección JSON Login:
+
+https://symfony.com/doc/current/security.html 
+
+Después de seguir los pasos del enlace previo y comprobar que puedo registrar un usuario, hago la redirección del login a hello editando el fichero security.yaml (info:chatgpt):
+
+ form_login:
+                login_path: app_login
+                check_path: app_login
+                default_target_path: app_hello
+                enable_csrf: true
