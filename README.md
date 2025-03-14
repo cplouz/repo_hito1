@@ -3,9 +3,15 @@ composer create-project symfony/skeleton:"7.2.x" HITO_1
 
 (en realidad descargamos en proyecto del repo de clase e hicimos composer install y lo subimos al repo propio de github)
 
+Para actualizar datos en el proyecto de GitHub:
+
+git push origin main
+
+Conexión base de datos en el archivo .env:
+DATABASE_URL="mysql://root@127.0.0.1:3306/cpanelouz?serverVersion=10.4.28-MariaDB&charset=utf8mb4"
+(creo una conexion para una bbdd con el nombre de mi usuario)
+
 Creo la bbdd con:
 php bin/console doctrine:database:create
 
-Y me genera esta linea:
 
-Created database `cpanelouz` for connection named default
