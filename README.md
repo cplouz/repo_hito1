@@ -29,3 +29,24 @@ Después de seguir los pasos del enlace previo y comprobar que puedo registrar u
                 check_path: app_login
                 default_target_path: app_hello
                 enable_csrf: true
+
+
+---- CREACIÓN DE NUEVA ENTIDAD
+
+ENTIDAD:Examen
+
+String  	Materia
+Float   	Nota    
+DateTime	Fecha
+
+
+Creo la entidad con php bin/console make:entity y con >relation veo cual es la que más me conviene para la relacion con user 
+
+
+Luego, actualizo la base de datos:
+
+php bin/console make:migration 
+php bin/console doctrine:migrations:migrate 
+
+
+
