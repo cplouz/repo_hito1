@@ -48,5 +48,12 @@ Luego, actualizo la base de datos:
 php bin/console make:migration 
 php bin/console doctrine:migrations:migrate 
 
+Creo un servicio "ExamenService", copio la carpeta service a src de un ejercicio anterior
+
+
+Una vez configurado el servicio "ExamenService" creo el controlador de ExamenController con el comando:
+
+hp bin/console make:controller ExamenController
+
 
 
