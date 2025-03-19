@@ -55,5 +55,15 @@ Una vez configurado el servicio "ExamenService" creo el controlador de ExamenCon
 
 hp bin/console make:controller ExamenController
 
+La estructura del ExamenController la saqué del ejercicio que hicimos donde teníamos NotaController
 
 
+BOOTSTRAP (INFO: https://symfony.com/doc/current/frontend/asset_mapper.html)
+
+composer require symfony/asset-mapper symfony/asset symfony/twig-pack
+
+
+php bin/console importmap:require bootstrap
+
+
+php bin/console importmap:install

@@ -5,7 +5,6 @@ use App\Entity\Examen;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 
-
 class ExamenService
 {
     private EntityManagerInterface $entityManager;

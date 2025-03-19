@@ -15,17 +15,17 @@ class Examen
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $Materia = null;
+    private ?string $materia = null; // Se cambió "Materia" por "materia"
 
     #[ORM\Column]
-    private ?float $Nota = null;
+    private ?float $nota = null; // Se cambió "Nota" por "nota"
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $Fecha = null;
+    private ?\DateTimeInterface $fecha = null; // Se cambió "Fecha" por "fecha"
 
-    #[ORM\ManyToOne(inversedBy: 'Examen')]
+    #[ORM\ManyToOne(inversedBy: 'examenes')] // Cambié el nombre de la propiedad inversa de 'Examen' a 'examenes'
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $User = null;
+    private ?User $user = null; // Se cambió "User" por "user"
 
     public function getId(): ?int
     {
@@ -34,48 +34,48 @@ class Examen
 
     public function getMateria(): ?string
     {
-        return $this->Materia;
+        return $this->materia; // Se cambió "Materia" por "materia"
     }
 
-    public function setMateria(string $Materia): static
+    public function setMateria(string $materia): static
     {
-        $this->Materia = $Materia;
+        $this->materia = $materia; // Se cambió "Materia" por "materia"
 
         return $this;
     }
 
     public function getNota(): ?float
     {
-        return $this->Nota;
+        return $this->nota; // Se cambió "Nota" por "nota"
     }
 
-    public function setNota(float $Nota): static
+    public function setNota(float $nota): static
     {
-        $this->Nota = $Nota;
+        $this->nota = $nota; // Se cambió "Nota" por "nota"
 
         return $this;
     }
 
     public function getFecha(): ?\DateTimeInterface
     {
-        return $this->Fecha;
+        return $this->fecha; // Se cambió "Fecha" por "fecha"
     }
 
-    public function setFecha(\DateTimeInterface $Fecha): static
+    public function setFecha(\DateTimeInterface $fecha): static
     {
-        $this->Fecha = $Fecha;
+        $this->fecha = $fecha; // Se cambió "Fecha" por "fecha"
 
         return $this;
     }
 
     public function getUser(): ?User
     {
-        return $this->User;
+        return $this->user; // Se cambió "User" por "user"
     }
 
-    public function setUser(?User $User): static
+    public function setUser(?User $user): static
     {
-        $this->User = $User;
+        $this->user = $user; // Se cambió "User" por "user"
 
         return $this;
     }

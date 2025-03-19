@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Examen;
 use App\Service\ExamenService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class ExamenController extends AbstractController
 {
@@ -19,33 +20,49 @@ final class ExamenController extends AbstractController
         ]);
     }
 
-    #[Route('/examen/crear', name: 'examen_crear', methods: ['POST'])]
-    public function crear(Request $request, ExamenService $examenService): Response
-    {
+    #[Route('/examen/new', name: 'app_examen_new_form')]
+    public function crearConFormulario(
+        Request $request,
+        ValidatorInterface $validator,
+        ExamenService $examenService
+    ): Response {
+
         if (!$this->getUser()) {
             $this->addFlash('error', 'Debes iniciar sesión para crear un examen.');
             return $this->redirectToRoute('app_login');
         }
 
-        try {
+        $examen = new Examen();
+
+        if ($request->isMethod('POST')) {
             $materia = $request->request->get('materia');
             $nota = (float) $request->request->get('nota');
             $fecha = new \DateTime($request->request->get('fecha'));
+            $examen->setMateria($materia);
+            $examen->setNota($nota);
+            $examen->setFecha($fecha);
 
-            if (!$examenService->crearExamen($materia, $nota, $fecha)) {
-                throw new \Exception("No se pudo crear el examen.");
+            $errores = $validator->validate($examen);
+            if (count($errores) > 0) {
+                foreach ($errores as $error) {
+                    $this->addFlash("warning", $error->getMessage());
+                }
+                return $this->render("examen/crear.html.twig", ["examen" => $examen]);
+            } else {
+                if ($examenService->crearExamen($materia, $nota, $fecha)) {
+                    $this->addFlash("success", "Examen creado correctamente");
+                    return $this->redirectToRoute("app_examen");
+                } else {
+                    $this->addFlash("error", "No se pudo crear el examen.");
+                }
             }
-
-            $this->addFlash('success', 'Examen creado con éxito.');
-        } catch (\Throwable $e) {
-            $this->addFlash('error', 'Error al crear el examen: ' . $e->getMessage());
         }
 
-        return $this->redirectToRoute('home');
+        return $this->render("examen/crear.html.twig", ["examen" => $examen]);
     }
-
-
-
-
-
 }
+
+
+
+
+
