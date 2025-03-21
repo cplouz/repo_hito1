@@ -27,10 +27,10 @@ final class ExamenController extends AbstractController
         ExamenService $examenService
     ): Response {
 
-        if (!$this->getUser()) {
+      /*  if (!$this->getUser()) {
             $this->addFlash('error', 'Debes iniciar sesión para crear un examen.');
             return $this->redirectToRoute('app_login');
-        }
+        }*/
 
         $examen = new Examen();
 

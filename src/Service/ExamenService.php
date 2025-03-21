@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service;
 
 use App\Entity\Examen;
@@ -18,20 +19,23 @@ class ExamenService
 
     public function crearExamen(string $materia, float $nota, \DateTimeInterface $fecha): bool
     {
+        // Obtener el usuario actual desde el sistema de seguridad
         $usuario = $this->security->getUser();
         if (!$usuario) {
-            return false;
+            return false; // Si no hay usuario autenticado, no crear el examen
         }
 
+        // Crear el nuevo objeto Examen
         $examen = new Examen();
         $examen->setMateria($materia);
         $examen->setNota($nota);
         $examen->setFecha($fecha);
-        $examen->setUser($usuario);
+        $examen->setUser($usuario); // Asignamos el usuario al examen
 
+        // Persistimos y guardamos el examen en la base de datos
         $this->entityManager->persist($examen);
         $this->entityManager->flush();
 
-        return true;
+        return true; // El examen ha sido creado exitosamente
     }
 }
