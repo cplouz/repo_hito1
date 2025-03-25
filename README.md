@@ -66,4 +66,4 @@ composer require symfony/asset-mapper symfony/asset symfony/twig-pack
 php bin/console importmap:require bootstrap
 
 
-php bin/console importmap:installh
+php bin/console importmap:install
