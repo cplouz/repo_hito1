@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -38,12 +39,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Examen>
      */
-    #[ORM\OneToMany(targetEntity: Examen::class, mappedBy: 'user')] // Corregido: 'user' en lugar de 'User'
-    private Collection $Examen;
+    #[ORM\OneToMany(targetEntity: Examen::class, mappedBy: 'usuario')]
+    private Collection $editar;
 
     public function __construct()
     {
-        $this->Examen = new ArrayCollection();
+        $this->editar = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,27 +125,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Examen>
      */
-    public function getExamen(): Collection
+    public function getEditar(): Collection
     {
-        return $this->Examen;
+        return $this->editar;
     }
 
-    public function addExaman(Examen $examan): static
+    public function addEditar(Examen $editar): static
     {
-        if (!$this->Examen->contains($examan)) {
-            $this->Examen->add($examan);
-            $examan->setUser($this);
+        if (!$this->editar->contains($editar)) {
+            $this->editar->add($editar);
+            $editar->setUsuario($this);
         }
 
         return $this;
     }
 
-    public function removeExaman(Examen $examan): static
+    public function removeEditar(Examen $editar): static
     {
-        if ($this->Examen->removeElement($examan)) {
+        if ($this->editar->removeElement($editar)) {
             // set the owning side to null (unless already changed)
-            if ($examan->getUser() === $this) {
-                $examan->setUser(null);
+            if ($editar->getUsuario() === $this) {
+                $editar->setUsuario(null);
             }
         }
 

@@ -10,11 +10,34 @@
 
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
+   
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">      
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('crear_examen') }}">Crear examen</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_examen_list') }}">Listar</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_logout') }}">Log out</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<br>
 
     This friendly message is coming from:
     <ul>
-        <li>Your controller at <code>C:/Users/usuario/Documents/UD4/symfony/hito_1/src/Controller/ExamenController.php</code></li>
-        <li>Your template at <code>C:/Users/usuario/Documents/UD4/symfony/hito_1/templates/examen/index.html.twig</code></li>
+        <li>Your controller at <code>C:/Users/crisp/OneDrive/Desktop/DAW/SYMFONY/tarea0421/src/Controller/ExamenController.php</code></li>
+        <li>Your template at <code>C:/Users/crisp/OneDrive/Desktop/DAW/SYMFONY/tarea0421/templates/examen/index.html.twig</code></li>
     </ul>
 </div>
 {% endblock %}

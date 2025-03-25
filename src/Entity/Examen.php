@@ -14,7 +14,7 @@ class Examen
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 50)]
     private ?string $materia = null;
 
     #[ORM\Column]
@@ -23,9 +23,9 @@ class Examen
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $fecha = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Examen')] // Corregido: 'Examen' en lugar de 'examenes'
+    #[ORM\ManyToOne(inversedBy: 'editar')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    private ?User $usuario = null;
 
     public function getId(): ?int
     {
@@ -68,14 +68,14 @@ class Examen
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUsuario(): ?User
     {
-        return $this->user;
+        return $this->usuario;
     }
 
-    public function setUser(?User $user): static
+    public function setUsuario(?User $usuario): static
     {
-        $this->user = $user;
+        $this->usuario = $usuario;
 
         return $this;
     }
