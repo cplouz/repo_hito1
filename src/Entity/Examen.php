@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ExamenRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 
@@ -20,6 +21,10 @@ class Examen
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Length( //constraint predeterminada de Symfony, validación básica
+        max: 50,
+        maxMessage: "La materia no puede superar los 50 caracteres."
+    )]
     private ?string $materia = null;
 
     #[ORM\Column]
